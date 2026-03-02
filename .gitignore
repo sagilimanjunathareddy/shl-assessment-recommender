@@ -1,0 +1,17 @@
+
+__pycache__/
+*.pyc
+
+
+.env
+
+data/embeddings/faiss_index.bin
+data/embeddings/metadata.pkl
+
+
+data/raw/
+data/processed/
+
+
+.DS_Store
+Thumbs.db
