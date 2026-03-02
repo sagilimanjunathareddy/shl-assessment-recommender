@@ -17,21 +17,36 @@ st.set_page_config(
 
 st.markdown("""
 <style>
-.main-title {
-    font-size: 40px;
-    font-weight: 700;
-    color: #1f4e79;
+body {
+    background-color: #0e1117;
 }
-.subtitle {
-    font-size: 18px;
-    color: #555;
-}
-.result-card {
+
+.card {
+    background-color: #1e1e1e;
     padding: 20px;
-    border-radius: 12px;
-    background-color: #f9f9f9;
-    margin-bottom: 15px;
-    box-shadow: 0px 4px 10px rgba(0,0,0,0.05);
+    border-radius: 15px;
+    margin-bottom: 20px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+}
+
+.card h4 {
+    color: #ffffff;
+    margin-bottom: 10px;
+}
+
+.card p {
+    color: #d1d5db;
+    font-size: 14px;
+}
+
+.card a {
+    color: #22c55e;
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.card a:hover {
+    text-decoration: underline;
 }
 </style>
 """, unsafe_allow_html=True)
@@ -80,14 +95,13 @@ if search_button:
 
         st.success(f"Top {len(results)} Recommended Assessments")
 
-        for i, item in enumerate(results, 1):
-
+        for i, item in enumerate(results):
             st.markdown(f"""
-            <div class="result-card">
-                <h3>{i}. {item['name']}</h3>
-                <p>{item['description']}</p>
+            <div class="card">
+                <h4>{i+1}. {item['name']}</h4>
+                <p>{item.get('description', '')}</p>
                 <p><b>Duration:</b> {item.get('duration', 'N/A')} minutes</p>
-                <p><b>Test Type:</b> {', '.join(item.get('test_type', []))}</p>
+                <p><b>Remote Support:</b> {item.get('remote_support', 'N/A')}</p>
                 <a href="{item['url']}" target="_blank">🔗 View Assessment</a>
             </div>
             """, unsafe_allow_html=True)
